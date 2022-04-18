@@ -1,0 +1,1 @@
+{"name":"Local: Equal_LIS","url":"/home/aditya/Documents/Learning/CP/Equal_LIS.c","tests":[{"id":1642612425014,"input":"2\n2\n3","output":"NO\nYES\n1 3 2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/aditya/Documents/Learning/CP/Equal_LIS.c","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: hash","url":"/home/aditya/Documents/Learning/CPP/STL/hash.cpp","tests":[{"id":1643182155047,"input":"1\n2\n1\n3\n1\n5\n2\n1\n5\n2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/aditya/Documents/Learning/CPP/STL/hash.cpp","group":"local","local":true}
