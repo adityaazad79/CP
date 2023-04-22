@@ -1,0 +1,1 @@
+{"name":"Local: Dna","url":"/home/aditya/Documents/Learning/CP/Quora/Dna.cpp","tests":[{"id":1650524153707,"input":"6\nAAGCTA","output":""},{"id":1650524166476,"input":"7\nGGGGGAT","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/aditya/Documents/Learning/CP/Quora/Dna.cpp","group":"local","local":true}
