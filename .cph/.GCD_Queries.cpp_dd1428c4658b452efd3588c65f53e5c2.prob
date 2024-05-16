@@ -1,0 +1,1 @@
+{"name":"Local: GCD_Queries","url":"/Users/aditya/Documents/TLE_Eleminators/Level_1/GCD_Queries.cpp","tests":[{"id":1713417644879,"input":"1\n3 3\n2 6 9\n1 1\n2 2\n2 3","output":"3\n1\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aditya/Documents/TLE_Eleminators/Level_1/GCD_Queries.cpp","group":"local","local":true}
