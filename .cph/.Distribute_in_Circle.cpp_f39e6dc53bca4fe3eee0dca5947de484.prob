@@ -1,0 +1,1 @@
+{"name":"Local: Distribute_in_Circle","url":"/home/aditya/Documents/CP/Distribute_in_Circle.cpp","tests":[{"id":1716229148222,"input":"2 5 1","output":"2"},{"id":1716229157078,"input":"8 5 2","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/aditya/Documents/CP/Distribute_in_Circle.cpp","group":"local","local":true}

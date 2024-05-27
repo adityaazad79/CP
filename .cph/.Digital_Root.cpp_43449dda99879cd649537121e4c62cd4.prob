@@ -1,0 +1,1 @@
+{"name":"Local: Digital_Root","url":"/home/aditya/Documents/CP/Digital_Root.cpp","tests":[{"id":1716142373932,"input":"99","output":"9"},{"id":1716142385218,"input":"100","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/aditya/Documents/CP/Digital_Root.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: Single_Number_II","url":"/home/aditya/Documents/CP/Single_Number_II.cpp","tests":[{"id":1716571953857,"input":"7\n1 2 2 3 1 2 1","output":"3"},{"id":1716572115748,"input":"10\n1 2 2 3 1 2 1 3 4 3","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/aditya/Documents/CP/Single_Number_II.cpp","group":"local","local":true}

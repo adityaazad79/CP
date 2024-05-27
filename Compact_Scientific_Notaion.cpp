@@ -7,114 +7,145 @@ const int M = 1e9 + 7;
 
 string fun(string A){
     int size=A.size();
+    if(size==1)
+        return (A+'E'+'0');
     string ans="";
-    int i=0;
     if(A[0]=='-'){
         ans.push_back(A[0]);
-        while(i<size){
-            A[i]=A[i+1];
-            i++;
+        A=A.substr(1,size-1);
+        size=A.size();
+    }
+    if(A[size-1]=='.'){
+        A.pop_back();
+    }
+    size=A.size();
+
+    // Zero(S) in front
+    int zf=0;
+    while(A[zf]=='0'){
+        zf++;
+    }
+    A=A.substr(zf,size-zf);
+    size=A.size();
+    int e=0;
+    int i=0;
+    while(A[e]!='.' && e<size){
+        e++;
+    }
+
+    // Zero(s) in rear
+    int zr=size-1;
+    bool flag=1;
+    bool flag2=0;
+    // bool flag3=0;
+    if(A[e]=='.'){
+        while(zr<size && A[zr]=='0'){
+            zr--;
         }
-        A.pop_back();
-    }
-    cout<<A<<endl;
-    size=A.size();
-    int zero_ct=0;
-    while(A[zero_ct]=='0')
-        zero_ct++;
-    // cout<<zero_ct<<endl;
-    bool flag=0;
-    int ind=-1;
-    for (int i = zero_ct; i < size; i++)
-    {
-        if(A[i]=='.'){
-            flag=1;
-            ind=i;
-            break;
-        }
-    }
-    i=1;
-    while(A[size-i]=='0' && flag){
-        i++;
-        A.pop_back();
-    }
-    size=A.size();
-    if(ind==size-1){
-        A.pop_back();
-        ind=-1;
-    }
-    size=A.size();
-    cout<<"size : "<<size<<endl;
-    // cout<<ind<<endl;
-    if(ind==-1){
-        ans.push_back(A[0]);
-        // flag=0;
-        // if(A[0]=='-'){
-        //     flag=1;
-        //     ans.push_back(A[1]);
+        A=A.substr(0,zr+1);
+        size=A.size();
+        flag=0;
+        // flag3=1;
+        // cout<<e<<endl;
+        // if(A[size-1]=='.'){
+        //     A.pop_back();
+        //     size--;
         // }
-        // if(flag)
-            // i=2;
-        // else
-        i=1;
-        ind=0;
-        if(i<size)
-            ans.push_back('.');
-        while(i<size){
-            ans.push_back(A[i++]);
-            ind++;
+    }
+    // cout<<A<<endl;
+    // cout<<e<<endl;
+    // size=A.size();
+    // while(A[e]!='.' && e<size){
+    //     e++;
+    // }
+    if(A[A.size()-1]=='.'){
+        A.pop_back();
+        size--;
+        flag=1;
+        // flag3=1;
+    }
+    // cout<<A<<endl;
+    // cout<<e<<endl;
+    // cout<<flag<<endl;
+    // cout<<flag2<<endl;
+
+
+    // Zero AFter Decimal
+    int zafd=0;
+    if(e==0){
+        while(zafd+1<size && A[zafd+1]=='0'){
+            zafd++;
         }
+        // A=A.substr(zafd+1,size);
+        size=A.size();
+        if(size==1)
+            return (ans+'E'+'0');
+        // cout<<"zafd : "<<zafd<<endl;
+        // cout<<"size : "<<size<<endl;
+        // cout<<A<<endl;
+    
+        e=-zafd-1;
+        ans.push_back(A[zafd+1]);
+        if(zafd+2<size)
+            ans.push_back('.');
+        ans.append(A.substr(zafd+2,size));
         ans.push_back('E');
-        ans.append(to_string(ind));
+        ans.append(to_string(e));
         return ans;
     }
-    flag=0;
-    if(A[zero_ct]=='.')
-        flag=1;
-    if(ind==0+zero_ct){
-        ans.push_back(A[1+zero_ct]);
-        if(zero_ct)
-            ans.push_back('.');
-        ind=0;
-        i=zero_ct+2;
-        while (i<size)
-        {
-            ans.push_back(A[i++]);
-            ind++;
-        }
-        ans.push_back('E');
-        if(flag){
-            ans.push_back('-');
-            ans.push_back('1');
-            return ans;
-        }
-    }
-    ans.push_back(A[zero_ct]);
-    flag=0;
-    if(A[zero_ct]=='-'){
-        ans.push_back(A[zero_ct+1]);
-        flag=1;
-        zero_ct++;
-    }
-    ans.push_back('.');
-    i=zero_ct+1;
-    while(i<ind){
-        ans.push_back(A[i++]);
-    }
-    i++;
-    while(i<size)
-        ans.push_back(A[i++]);
-    ans.push_back('E');
     if(flag)
-        ans.append(to_string(ind-2));
+        e--;
+
+    int s1=A.size()-1;
+    while(A[s1]=='0'){
+        A.pop_back();
+        s1--;
+    }
+    size=A.size();
+    if(A[size-1]=='.'){
+        A.pop_back();
+        size=A.size();
+        if(size==1)
+            return (A+'E'+to_string(e-1));
+    }
+    else if(!flag)
+        flag2=1;
+
+    if(size==1)
+        return (ans+A+'E'+to_string(e));
+        
+    // cout<<"e : "<<e<<endl;
+
+    ans.push_back(A[0]);
+    ans.push_back('.');
+    if(flag2){
+        ans.append(A.substr(1,e-1));
+        if(e+1<size)
+            ans.append(A.substr(e+1,size));
+    }
+    else{
+        ans.append(A.substr(1,e));
+        if(e+1<size)    
+            ans.append(A.substr(e+1,size));
+    }
+    ans.push_back('E');
+    if(flag2)
+        ans.append(to_string(e-1));
     else
-        ans.append(to_string(ind-1));
+        ans.append(to_string(e));
+
+
+    // cout<<A<<endl;
 
     return ans;
 }
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
     string A;
     cin>>A;
     cout<<fun(A)<<endl;
