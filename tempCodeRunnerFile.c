@@ -1,2 +1,2 @@
 
-                ar[j] = temp;
+                printf("\n**%d ", q->

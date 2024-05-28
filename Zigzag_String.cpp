@@ -59,7 +59,6 @@ string fun1(string A, int B){
 }
 
 string fun2(string A, int B){
-    // B--;
     int size=A.size();
     vector<string>S(B);
     int ct=0;
@@ -69,7 +68,6 @@ string fun2(string A, int B){
     {
         for (; i < B; i++)
         {
-            // cout<<"i : "<<i<<endl;
             S[i].push_back(A[ct]);
             ct++;
             if(ct==size){
@@ -82,7 +80,6 @@ string fun2(string A, int B){
         i=B-2;
         for (;i>0; i--)
         {
-            // cout<<"j : "<<i<<endl;
             S[i].push_back(A[ct]);
             ct++;
             if(ct==size)
@@ -93,10 +90,8 @@ string fun2(string A, int B){
     string ans;
     
     for(auto it:S)
-        // cout<<it<<" ";
         ans.append(it);
 
-    // cout<<endl;
     return ans;
 }
 

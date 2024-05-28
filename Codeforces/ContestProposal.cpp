@@ -20,8 +20,7 @@ void solve2(){
     for (int i = 0; i < n; i++)
         cin>>b[i];
     
-    int p=0;
-    int min=b[p];
+    int min=b[0];
 
     int j=0,k=0,ct=0;
     for(int i=0;j<n && k<n;i++){
