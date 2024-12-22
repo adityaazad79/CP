@@ -1,0 +1,1 @@
+{"name":"Local: Cover_In_Water","url":"/Users/aditya/Documents/CP/Cover_In_Water.cpp","tests":[{"id":1721558555661,"input":"5\n3\n...\n7\n##....#\n7\n..#.#..\n4\n####\n10\n#...#..#.#","output":"2\n2\n5\n0\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aditya/Documents/CP/Cover_In_Water.cpp","group":"local","local":true}

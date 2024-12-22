@@ -1,0 +1,2 @@
+const linkElement = document.querySelector('a[href="#fragment-29"][onclick^="fnGetChildDataForList"]');
+linkElement.removeAttribute('style');

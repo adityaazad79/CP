@@ -1,0 +1,1 @@
+{"name":"Local: Power_of_2","url":"/Users/aditya/Documents/CP/Power_of_2.cpp","tests":[{"id":1716893369692,"input":"128","output":"1"},{"id":1716893442267,"input":"00032342","output":""},{"id":1716893643872,"input":"24332011","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aditya/Documents/CP/Power_of_2.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: Make_Equal_Elements_Array","url":"/Users/aditya/Documents/CP/Make_Equal_Elements_Array.cpp","tests":[{"id":1717783413376,"input":"2 3 1\n1","output":"1"},{"id":1717783427276,"input":"2 3 1\n2","output":"0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aditya/Documents/CP/Make_Equal_Elements_Array.cpp","group":"local","local":true}
