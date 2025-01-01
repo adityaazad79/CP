@@ -90,43 +90,59 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+
+
+vector<int> Next_Greater_Elem(vector<int> &nums)
+{
+    int n = nums.size();
+
+    stack<int> S;
+    vector<int> V(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        while (!S.empty() && (nums[i] > nums[S.top()]))
+        {
+            V[S.top()] = i;
+            S.pop();
+        }
+        S.push(i);
+    }
+
+    while (!S.empty())
+    {
+        V[S.top()] = -1;
+        S.pop();
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (V[i] != -1)
+            cout << nums[V[i]] << " ";
+        else
+            cout << V[i] << " ";
+    }
+    cout << endl;
+
+    return V;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    vector<int> nums(n);
 
-    priority_queue<int> pq;
-    int temp;
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        pq.push(temp);
+        cin >> nums[i];
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    vector<int> ans = Next_Greater_Elem(nums);
 
     return 0;
 }

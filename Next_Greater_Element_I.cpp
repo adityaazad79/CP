@@ -8,43 +8,43 @@ typedef long double ld;
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
-vector<int> nextGreaterElement(vector<int> &nums1,vector<int>&nums2){
-    int n=nums1.size();
-    int m=nums2.size();
+// vector<int> nextGreaterElement(vector<int> &nums1,vector<int>&nums2){
+//     int n=nums1.size();
+//     int m=nums2.size();
 
-    int i;
-    unordered_map<int,int>ump;
-    for (i = 0; i < n; i++)
-        ump[nums1[i]]=1;
+//     int i;
+//     unordered_map<int,int>ump;
+//     for (i = 0; i < n; i++)
+//         ump[nums1[i]]=1;
     
-    vector<int>V(m);
-    stack<int>S;
-    // S.push(nums1[0]);
-    for (i = 0; i < m; i++)
-    {
-        if(ump[nums2[i]]){
-            while(!S.empty() && nums2[i]>nums2[S.top()]){
-                // V[S.top()]=ump[nums2[i]+1];
-                V[S.top()]=i;
-                S.pop();
-            }
-            S.push(i);
-            // cout<<nums2[i]<<" ";
-        }
-    }
-    // cout<<endl;
-    while(!S.empty()){
-        V[S.top()]=-1;
-        S.pop();
-    }
-    for (int i = 0; i < n; i++)
-    {
-        if(V[i]!=-1)
-            V[i]=nums2[V[i]];
-    }
+//     vector<int>V(m);
+//     stack<int>S;
+//     // S.push(nums1[0]);
+//     for (i = 0; i < m; i++)
+//     {
+//         if(ump[nums2[i]]){
+//             while(!S.empty() && nums2[i]>nums2[S.top()]){
+//                 // V[S.top()]=ump[nums2[i]+1];
+//                 V[S.top()]=i;
+//                 S.pop();
+//             }
+//             S.push(i);
+//             // cout<<nums2[i]<<" ";
+//         }
+//     }
+//     // cout<<endl;
+//     while(!S.empty()){
+//         V[S.top()]=-1;
+//         S.pop();
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         if(V[i]!=-1)
+//             V[i]=nums2[V[i]];
+//     }
     
-    return V;
-}
+//     return V;
+// }
 
 vector<int> nextGreaterElement2(vector<int> &nums1,vector<int>&nums2){
     int n=nums1.size();

@@ -90,43 +90,60 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+string removeDuplicateLetters(string s)
+{
+    int n = s.size();
+    unordered_map<char, int> ump;
+    unordered_map<char, bool> seen;
+    for (int i = 0; i < n; i++)
+    {
+        ump[s[i]] = i;
+    }
+
+    stack<char> st;
+    st.push(s[0]);
+    seen[s[0]] = 1;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (seen[s[i]] == 1)
+        {
+            continue;
+        }
+        while (!st.empty() && (st.top() > s[i]) && (ump[st.top()] > i))
+        {
+            seen[st.top()] = 0;
+            st.pop();
+        }
+        st.push(s[i]);
+        seen[st.top()] = 1;
+    }
+
+    string ans;
+    while (!st.empty())
+    {
+        ans.push_back(st.top());
+        st.pop();
+    }
+
+    reverse(ans.begin(), ans.end());
+    cout << ans << endl;
+
+    return ans;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    priority_queue<int> pq;
-    int temp;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> temp;
-        pq.push(temp);
-    }
+    string ans = removeDuplicateLetters(s);
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    // cout << ans << endl;
 
     return 0;
 }

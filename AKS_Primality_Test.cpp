@@ -90,43 +90,43 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+bool isPrime(ll n)
+{
+    if (n <= 1)
+        return false; // Numbers less than or equal to 1 are not prime
+    if (n <= 3)
+        return true; // 2 and 3 are prime numbers
+    if (n % 2 == 0 || n % 3 == 0)
+        return false; // Eliminate multiples of 2 and 3
+
+    for (ll i = 5; i * i <= n; i += 6)
+    {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    }
+
+    return true;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    ll num;
+    cin >> num;
 
-    priority_queue<int> pq;
-    int temp;
-    for (int i = 0; i < n; i++)
+    if (isPrime(num))
     {
-        cin >> temp;
-        pq.push(temp);
+        cout << num << " is a prime number." << endl;
+    }
+    else
+    {
+        cout << num << " is not a prime number." << endl;
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    return 0;
 
     return 0;
 }

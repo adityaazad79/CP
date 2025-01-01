@@ -90,43 +90,65 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+bool validateStackSequences(vector<int> &pushed, vector<int> &popped)
+{
+    int n = pushed.size();
+
+    stack<int> S;
+    int j = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if ((pushed[i] == popped[j]))
+        {
+            j++;
+        }
+        else if ((!S.empty() && (S.top() == popped[j])))
+        {
+            j++;
+            i--;
+            S.pop();
+        }
+        else
+            S.push(pushed[i]);
+    }
+    // cout << j << endl;
+    for (; j < n; j++)
+    {
+        if (S.top() == popped[j])
+            S.pop();
+        else
+            return 0;
+    }
+
+    return S.empty();
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    priority_queue<int> pq;
-    int temp;
+    vector<int> pushed(n);
+    vector<int> popped(n);
+
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        pq.push(temp);
+        cin >> pushed[i];
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < n; i++)
     {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
+        cin >> popped[i];
     }
 
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    if (validateStackSequences(pushed, popped))
+        cout << "true";
+    else
+        cout << "false";
 
     return 0;
 }

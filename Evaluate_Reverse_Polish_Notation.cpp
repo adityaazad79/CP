@@ -90,43 +90,70 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+int evalRPN(vector<string> &tokens)
+{
+    int n = tokens.size();
+
+    stack<int> st;
+
+    int temp;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (tokens[i] == "+")
+        {
+            temp = st.top();
+            st.pop();
+            temp = st.top() + temp;
+            st.pop();
+            st.push(temp);
+        }
+        else if (tokens[i] == "-")
+        {
+            temp = st.top();
+            st.pop();
+            temp = st.top() - temp;
+            st.pop();
+            st.push(temp);
+        }
+        else if (tokens[i] == "*")
+        {
+            temp = st.top();
+            st.pop();
+            temp = st.top() * temp;
+            st.pop();
+            st.push(temp);
+        }
+        else if (tokens[i] == "/")
+        {
+            temp = st.top();
+            st.pop();
+            temp = st.top() / temp;
+            st.pop();
+            st.push(temp);
+        }
+        else
+            st.push(stoi(tokens[i]));
+    }
+
+    return st.top();
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
-
-    priority_queue<int> pq;
-    int temp;
+    int n;
+    cin >> n;
+    vector<string> tokens(n);
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        pq.push(temp);
+        cin >> tokens[i];
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    cout << evalRPN(tokens) << endl;
 
     return 0;
 }

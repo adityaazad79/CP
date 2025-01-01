@@ -90,6 +90,72 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+int solve1(vector<int> &nums, int k)
+{
+    int n = nums.size();
+
+    if (k < n / 2)
+    {
+        priority_queue<int> pq;
+        for (int i = 0; i < n; i++)
+        {
+            pq.push(nums[i]);
+        }
+
+        int temp;
+        for (int i = 0; i < k; i++)
+        {
+            temp = pq.top();
+            pq.pop();
+        }
+
+        return temp;
+    }
+    else
+    {
+        priority_queue<int, vector<int>, greater<int>> pq;
+        for (int i = 0; i < n; i++)
+        {
+            pq.push(nums[i]);
+        }
+
+        k = n - k + 1;
+
+        int temp;
+        for (int i = 0; i < k; i++)
+        {
+            temp = pq.top();
+            pq.pop();
+        }
+
+        return temp;
+    }
+}
+
+// Method 2
+int solve2(vector<int> &nums, int k)
+{
+    int n = nums.size();
+
+    priority_queue<int, vector<int>, greater<int>> pq;
+    for (int i = 0; i < k; i++)
+    {
+        pq.push(nums[i]);
+    }
+
+    int temp;
+    for (int i = k; i < n; i++)
+    {
+        if (nums[i] > pq.top())
+        {
+            pq.pop();
+            pq.push(nums[i]);
+        }
+    }
+
+    return pq.top();
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -99,34 +165,12 @@ int main()
     int n, k;
     cin >> n >> k;
 
-    priority_queue<int> pq;
-    int temp;
+    vector<int> nums(n);
     for (int i = 0; i < n; i++)
-    {
-        cin >> temp;
-        pq.push(temp);
-    }
+        cin >> nums[i];
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    // cout << solve1(nums, k) << endl;
+    cout << solve2(nums, k) << endl;
 
     return 0;
 }

@@ -90,43 +90,35 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+void solve(int n, vector<int> &nums)
+{
+    ll m;
+    cin >> m;
+
+        
+
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    int n, q;
+    cin >> n >> q;
 
-    priority_queue<int> pq;
-    int temp;
+    vector<int> nums(n);
+
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        pq.push(temp);
+        cin >> nums[i];
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
+    while (q--)
     {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
+        solve(n, nums);
     }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
 
     return 0;
 }

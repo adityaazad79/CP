@@ -89,6 +89,40 @@ void _print(map<T, V> v)
 
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
+priority_queue<int, vector<int>, greater<int>> pq;
+
+void KthLargest(int k, vector<int> &nums)
+{
+    int n = nums.size();
+    // cout<<n<<endl;
+    if (n == 0)
+        return;
+
+    for (int i = 0; i < k; i++)
+        pq.push(nums[i]);
+
+    for (int i = k; i < n; i++)
+    {
+        if (nums[i] >= pq.top())
+        {
+            pq.pop();
+            pq.push(nums[i]);
+        }
+    }
+}
+
+int add(int val)
+{
+    if (pq.empty())
+        pq.push(val);
+
+    else if (val > pq.top())
+    {
+        pq.pop();
+        pq.push(val);
+    }
+    return pq.top();
+}
 
 int main()
 {
@@ -99,34 +133,22 @@ int main()
     int n, k;
     cin >> n >> k;
 
-    priority_queue<int> pq;
-    int temp;
+    vector<int> V(n);
+
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        pq.push(temp);
+        cin >> V[i];
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
+    KthLargest(k, V);
 
-    for (int i = 0; i < k; i++)
+    int p, q;
+    cin >> p;
+    while (p--)
     {
-        pq.push(tp[i]);
+        cin >> q;
+        cout << add(q) << endl;
     }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
 
     return 0;
 }

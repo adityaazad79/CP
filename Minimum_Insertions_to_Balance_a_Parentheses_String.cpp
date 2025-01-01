@@ -90,43 +90,55 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+int minInsertions(string s)
+{
+    int n = s.length();
+
+    stack<char> st;
+
+    int ct = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '(')
+        {
+            st.push('(');
+        }
+        else if (!st.empty() && st.top() == '(' && s[i] == ')' && (i + 1 != n) && s[i + 1] == ')')
+        {
+            i++;
+            st.pop();
+        }
+        else if (!st.empty() && st.top() == '(' && s[i] == ')')
+        {
+            ct++;
+            st.pop();
+        }
+        else if (st.empty() && s[i] == ')' && (i + 1 != n) && s[i + 1] == ')')
+        {
+            i++;
+            ct++;
+        }
+        else if (st.empty() && s[i] == ')')
+        {
+            ct++;
+            ct++;
+        }
+    }
+
+    return (ct + 2 * st.size());
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    priority_queue<int> pq;
-    int temp;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> temp;
-        pq.push(temp);
-    }
-
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    cout << minInsertions(s) << endl;
 
     return 0;
 }

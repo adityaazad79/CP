@@ -90,43 +90,76 @@ void _print(map<T, V> v)
 const int N = 1e7 + 10;
 const int M = 1e9 + 7;
 
+int largestRectangleArea(vector<int> & heights)
+{
+    int n =  heights.size();
+    vector<int> Smaller_Right(n);
+    vector<int> Smaller_Left(n);
+
+    stack<int> st;
+
+    for (int i = 0; i < n; i++)
+    {
+        while (!st.empty() && ( heights[st.top()] >  heights[i]))
+        {
+            Smaller_Right[st.top()] = i - 1;
+            st.pop();
+        }
+        st.push(i);
+    }
+
+    while (!st.empty())
+    {
+        Smaller_Right[st.top()] = n - 1;
+        st.pop();
+    }
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (!st.empty() && ( heights[st.top()] >  heights[i]))
+        {
+            Smaller_Left[st.top()] = i + 1;
+            st.pop();
+        }
+        st.push(i);
+    }
+
+    while (!st.empty())
+    {
+        Smaller_Left[st.top()] = 0;
+        st.pop();
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        Smaller_Right[i] = (Smaller_Right[i] - i + 1) *  heights[i];
+        Smaller_Left[i] = (i-Smaller_Left[i]) *  heights[i];
+    }
+
+    int ans=-1;
+    for (int i = 0; i < n; i++)
+        ans=max(ans,(Smaller_Left[i]+Smaller_Right[i]));
+
+    return ans;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    priority_queue<int> pq;
-    int temp;
+    vector<int>  heights(n);
+
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        pq.push(temp);
+        cin >>  heights[i];
     }
 
-    vector<int> tp;
-    for (int i = 0; i < k; i++)
-    {
-        // temp=pq.top();
-        tp.push_back(pq.top());
-        pq.pop();
-    }
-    cout << k << "th largest : " << tp[k - 1] << endl;
-
-    for (int i = 0; i < k; i++)
-    {
-        pq.push(tp[i]);
-    }
-
-    while (!pq.empty())
-    {
-        cout << pq.top() << " ";
-        pq.pop();
-    }
-    cout << endl;
+    cout << largestRectangleArea( heights) << endl;
 
     return 0;
 }
